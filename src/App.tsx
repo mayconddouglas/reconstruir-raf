@@ -101,14 +101,6 @@ function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
           >
             RECONSTRUIR
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[9px] md:text-[10px] font-mono tracking-[0.3em] text-primary uppercase font-medium"
-          >
-            Estúdio de Engenharia & Arquitetura
-          </motion.p>
         </div>
 
         {/* Luxury loading progress indicator */}
@@ -1190,7 +1182,7 @@ export default function App() {
                 <div className="flex items-center gap-4">
                   <span className="hidden md:inline font-mono text-[10px] text-muted-foreground/30 uppercase tracking-widest">// Role para baixo</span>
                   <a 
-                    href="https://instagram.com" 
+                    href="https://www.instagram.com/redecoracaogeral" 
                     target="_blank" 
                     rel="noreferrer" 
                     className="inline-flex items-center gap-1.5 text-primary text-[10px] font-mono uppercase tracking-wider hover:text-primary/80 transition-colors"

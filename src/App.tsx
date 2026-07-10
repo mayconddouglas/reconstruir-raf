@@ -515,16 +515,16 @@ export default function App() {
             <span className="font-heading font-semibold tracking-wider uppercase text-sm">Reconstruir</span>
           </div>
           
-          <div className="hidden md:flex items-center relative gap-2">
+          <div className="hidden lg:flex items-center relative gap-0.5 xl:gap-2">
             {NAV_LINKS.map((link, i) => (
               <a 
                 key={link.id}
                 href={`#${link.id}`} 
-                className={`relative px-4 py-2 text-sm font-medium transition-colors z-10 flex items-center gap-2 ${
+                className={`relative px-2.5 xl:px-4 py-1.5 xl:py-2 text-xs xl:text-sm font-medium transition-colors z-10 flex items-center gap-1.5 xl:gap-2 ${
                   activeSection === link.id ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                <span className="flex items-center justify-center w-5 h-5 rounded-full border border-white/20 text-[9px] font-mono opacity-80">
+                <span className="hidden xl:flex items-center justify-center w-5 h-5 rounded-full border border-white/20 text-[9px] font-mono opacity-80">
                   0{i + 1}
                 </span>
                 {link.label}
@@ -539,7 +539,7 @@ export default function App() {
             ))}
           </div>
 
-          <div className="hidden md:flex">
+          <div className="hidden lg:flex">
             <a href="https://wa.me/5581999999999" target="_blank" rel="noreferrer" className="px-3 h-7 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold tracking-wider uppercase flex items-center gap-1 hover:bg-primary/90 transition-all duration-300">
               FALAR NO WHATSAPP
               <ArrowRight className="w-3 h-3" />
@@ -547,7 +547,7 @@ export default function App() {
           </div>
 
           <button 
-            className="md:hidden text-foreground p-1.5 z-50 relative pointer-events-auto flex flex-col justify-center items-center w-9 h-9 gap-[5px] focus:outline-none"
+            className="lg:hidden text-foreground p-1.5 z-50 relative pointer-events-auto flex flex-col justify-center items-center w-9 h-9 gap-[5px] focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Menu"
           >
@@ -580,7 +580,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col"
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-4 text-base font-medium mt-8">
               {NAV_LINKS.map((link, i) => (
@@ -861,19 +861,28 @@ export default function App() {
             {/* Card 1: 10 Anos */}
             <motion.div 
               style={{ clipPath: clipPathC1, opacity: opacityC1, pointerEvents: pointerEventsC1 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-neutral-900 z-20 px-4"
+              className="absolute inset-0 flex items-center justify-center bg-neutral-950 z-20 px-4 overflow-hidden"
             >
-              <motion.div style={{ scale: scaleC1 }} className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+              <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                <img 
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60" 
+                  alt="Fundo Experiência 10 Anos" 
+                  className="w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-50 contrast-[1.1]" 
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/30 to-neutral-950/80" />
+              </div>
+              <motion.div style={{ scale: scaleC1 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center mb-2 border border-primary/30">
                   <Clock className="w-8 h-8 md:w-10 md:h-10 text-primary" />
                 </div>
                 <div className="space-y-4">
                   <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
                     Experiência Comprovada
                   </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-medium text-foreground tracking-tight">10 Anos</h4>
-                  <p className="text-lg md:text-2xl text-muted-foreground/80 leading-relaxed font-light max-w-2xl mx-auto">
-                    Sólida experiência no mercado de obras e reformas. Nossa jornada é marcada pela excelência e entrega pontual de cada projeto.
+                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-foreground tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">10 Anos</h4>
+                  <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
+                    Uma década transformando sonhos em estruturas de altíssima fidelidade. Nossa jornada é pavimentada com rigor normativo, gestão inteligente de prazos e entrega bem-sucedida de projetos sofisticados de alto padrão.
                   </p>
                 </div>
               </motion.div>
@@ -882,19 +891,28 @@ export default function App() {
             {/* Card 2: Garantia Total */}
             <motion.div 
               style={{ clipPath: clipPathC2, opacity: opacityC2, pointerEvents: pointerEventsC2 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-[#EAE6E1] text-neutral-900 z-30 px-4"
+              className="absolute inset-0 flex items-center justify-center bg-[#EAE6E1] text-neutral-900 z-30 px-4 overflow-hidden"
             >
-              <motion.div style={{ scale: scaleC2 }} className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-neutral-800/10 flex items-center justify-center mb-2">
+              <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=60" 
+                  alt="Fundo Confiança & Garantia" 
+                  className="w-full h-full object-cover opacity-40 mix-blend-multiply filter contrast-[1.2] brightness-[1.02]" 
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-[#EAE6E1]/50 backdrop-blur-[1px]" />
+              </div>
+              <motion.div style={{ scale: scaleC2 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-neutral-900/10 backdrop-blur-md flex items-center justify-center mb-2 border border-neutral-900/15">
                   <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-neutral-800" />
                 </div>
                 <div className="space-y-4">
-                  <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-neutral-600 font-medium block">
-                    Confiança & Segurança
+                  <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-neutral-700 font-medium block">
+                    Confiança & Segurança Real
                   </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-medium text-neutral-950 tracking-tight">Garantia Total</h4>
-                  <p className="text-lg md:text-2xl text-neutral-700 leading-relaxed font-normal max-w-2xl mx-auto">
-                    Pós-venda ativo e compromisso real com a satisfação. Estaremos ao seu lado mesmo depois que a obra for finalizada.
+                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-neutral-950 tracking-tight">Garantia Total</h4>
+                  <p className="text-lg md:text-2xl text-neutral-800 leading-relaxed font-normal max-w-2xl mx-auto">
+                    Suporte irrestrito e fidelidade ao seu investimento. Nosso pós-venda atuante e acompanhamento pós-chave garantem que sua única tarefa seja usufruir de ambientes intocáveis, seguros e perfeitamente duráveis.
                   </p>
                 </div>
               </motion.div>
@@ -903,19 +921,28 @@ export default function App() {
             {/* Card 3: Padrão NBR */}
             <motion.div 
               style={{ clipPath: clipPathC3, opacity: opacityC3, pointerEvents: pointerEventsC3 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-neutral-900 z-40 px-4"
+              className="absolute inset-0 flex items-center justify-center bg-neutral-950 z-40 px-4 overflow-hidden"
             >
-              <motion.div style={{ scale: scaleC3 }} className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+              <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                <img 
+                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60" 
+                  alt="Fundo Engenharia & Normas Técnicas" 
+                  className="w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-50 contrast-[1.1]" 
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/30 to-neutral-950/80" />
+              </div>
+              <motion.div style={{ scale: scaleC3 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center mb-2 border border-primary/30">
                   <Award className="w-8 h-8 md:w-10 md:h-10 text-primary" />
                 </div>
                 <div className="space-y-4">
                   <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
-                    Qualidade Técnica
+                    Rigor Técnico & Engenharia
                   </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-medium text-foreground tracking-tight">Padrão NBR</h4>
-                  <p className="text-lg md:text-2xl text-muted-foreground/80 leading-relaxed font-light max-w-2xl mx-auto">
-                    Rigidez e respeito integral às normas técnicas nacionais. A segurança estrutural do seu projeto não é negociável.
+                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-foreground tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">Padrão NBR</h4>
+                  <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
+                    Soberania técnica e total aderência às diretrizes da ABNT. Garantimos cálculos estruturais irretocáveis, processos auditados e conformidade absoluta. Conosco, a integridade da sua obra é prioridade máxima.
                   </p>
                 </div>
               </motion.div>
@@ -1157,10 +1184,10 @@ export default function App() {
           ref={portfolioScrollRef}
           className="relative h-[450vh] sm:h-[550vh] w-full"
         >
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-12 py-10">
-            <div className="w-[95%] max-w-[1400px] mx-auto space-y-8 md:space-y-12">
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-12 py-4 sm:py-6 md:py-8">
+            <div className="w-[95%] max-w-[1500px] mx-auto space-y-4 sm:space-y-6 md:space-y-8">
               {/* Header block spanning the entire width */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-4 sm:pb-5">
                 <div className="space-y-1.5 max-w-2xl">
                   <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
                     (03) Portfólio
@@ -1188,98 +1215,98 @@ export default function App() {
                   style={{ x: portfolioX }} 
                   className="flex gap-6 md:gap-8 w-max pr-12 py-2"
                 >
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-01"
                       area="450m²"
                       title="Residência Minimalista de Alto Padrão"
                       imgUrl="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={0}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-02"
                       area="1.200m²"
                       title="Sede Corporativa Concept"
                       imgUrl="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={1}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-03"
                       area="180m²"
                       title="Apartamento Loft Industrial"
                       imgUrl="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={2}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-04"
                       area="620m²"
                       title="Villa Suspensa & Integração Externa"
                       imgUrl="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={3}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-05"
                       area="3.400m²"
                       title="Lobby & Lounge Hotel Resort"
                       imgUrl="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={4}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-06"
                       area="290m²"
                       title="Refúgio Contemporâneo da Serra"
                       imgUrl="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={5}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-07"
                       area="95m²"
                       title="Espaço Gourmet & Cozinha Integrada"
                       imgUrl="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={6}
                     />
                   </div>
 
-                  <div className="w-[280px] sm:w-[480px] md:w-[680px] lg:w-[800px] xl:w-[880px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-08"
                       area="750m²"
                       title="Clínica & Spa de Alto Padrão Aura"
                       imgUrl="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=50&fm=webp"
                       widthClass="w-full"
-                      heightClass="h-[380px] sm:h-[45vh] md:h-[50vh] lg:h-[50vh]"
+                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={7}
                     />
                   </div>

@@ -61,7 +61,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   };
 
   const getWhatsAppLink = () => {
-    const text = `*SOLICITAÇÃO DE ORÇAMENTO - RECONSTRUIR ENGENHARIA*\n` +
+    const text = `*REUNIÃO TÉCNICA E ORÇAMENTO - RECONSTRUIR ENGENHARIA*\n` +
       `-----------------------------------------\n` +
       `*Cliente:* ${formData.nome}\n` +
       `*E-mail:* ${formData.email}\n` +
@@ -128,10 +128,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               <div className="flex items-center justify-between border-b border-white/5 pb-5 mb-6">
                 <div>
                   <span className="font-mono text-[9px] text-primary tracking-widest uppercase block mb-1">
-                    // SOLICITAÇÃO DE ORÇAMENTO
+                    // REUNIÃO TÉCNICA E ORÇAMENTO
                   </span>
                   <h3 className="font-heading text-xl font-medium text-white">
-                    Solicite um Orçamento
+                    Solicitar Estudo de Viabilidade
                   </h3>
                 </div>
                 

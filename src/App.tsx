@@ -22,7 +22,7 @@ const TESTIMONIALS = [
     id: 1,
     name: "Maurício Albuquerque",
     role: "Proprietário, Residência RES-01",
-    text: "O nível de rigor técnico da Reconstruir superou todas as expectativas. O cronograma foi cumprido à risca, com relatórios semanais detalhados e uma equipe impecável no canteiro de obras. Indico sem reservas para obras de alto padrão.",
+    text: "A Reconstruir entregou nossa residência rigorosamente dentro do prazo acordado e sem qualquer surpresa no orçamento. O planejamento detalhado e o suporte técnico nos trouxeram total tranquilidade durante toda a obra.",
     rating: 5,
     code: "SYS // TST-01",
     tag: "OBRA RESIDENCIAL DE LUXO",
@@ -32,7 +32,7 @@ const TESTIMONIALS = [
     id: 2,
     name: "Juliana Mendes",
     role: "Diretora de Operações, Sede Concept",
-    text: "Reformar nossa sede corporativa de 1.200m² sem interromper nossas atividades diárias parecia impossível. A engenharia da Reconstruir executou a obra com tal precisão, silêncio e organização que foi surpreendente.",
+    text: "Concluímos a reforma da nossa sede de 1.200m² sem interromper nossas atividades operacionais. A equipe técnica trabalhou com organização exemplar, silêncio e total cumprimento de metas de segurança.",
     rating: 5,
     code: "SYS // TST-02",
     tag: "OBRA COMERCIAL COMPLEXA",
@@ -42,7 +42,7 @@ const TESTIMONIALS = [
     id: 3,
     name: "Ricardo Vasconcelos",
     role: "Arquiteto e Designer de Interiores",
-    text: "Como arquiteto, prezo pelo detalhamento milimétrico. A Reconstruir foi a única construtora que de fato respeitou as especificações de projeto, as paginações complexas e as soluções de iluminação indireta que desenhei.",
+    text: "Como arquiteto de projetos de luxo, exijo fidelidade milimétrica nas especificações. A Reconstruir executa cada detalhe de paginação, iluminação e acabamento com rigor técnico absoluto e precisão impecável.",
     rating: 5,
     code: "SYS // TST-03",
     tag: "PARCERIA TÉCNICA // ARQUITETURA",
@@ -128,7 +128,7 @@ function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           className="text-[9px] font-mono text-muted-foreground/60 tracking-wider block pt-2"
         >
-          SISTEMA CARREGANDO // NBR ACTIVE
+          CARREGANDO EXPERIÊNCIA DE ALTO PADRÃO
         </motion.span>
       </div>
     </motion.div>
@@ -298,6 +298,34 @@ function RevealItem({ children, className = "", variants = staggerItemVariants }
   );
 }
 
+
+function AnimatedNumber({ value, active, duration = 1.2 }: { value: number; active: boolean; duration?: number }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!active) {
+      setCount(0);
+      return;
+    }
+    
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeProgress * value));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [active, value, duration]);
+
+  return <span>{count}</span>;
+}
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -315,44 +343,7 @@ export default function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [translateX, setTranslateX] = useState(0);
 
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: aboutScrollYRaw } = useScroll({
-    target: aboutRef,
-    offset: ["start start", "end end"]
-  });
-
-  const aboutScrollY = useSpring(aboutScrollYRaw, { stiffness: 80, damping: 20, restDelta: 0.001 });
-
-  // Intro texts
-  const introOpacity = useTransform(aboutScrollY, [0.4, 0.45], [1, 0]);
-  const introPointerEvents = useTransform(aboutScrollY, (v) => (v > 0.45 ? "none" : "auto"));
-  const opacityTitle = useTransform(aboutScrollY, [0, 0.05, 0.1], [0, 0, 1]);
-  const xTitle = useTransform(aboutScrollY, [0, 0.05, 0.1], [-20, -20, 0]);
-  const opacityS1 = useTransform(aboutScrollY, [0, 0.05, 0.1], [0, 0, 1]);
-  const opacityS2 = useTransform(aboutScrollY, [0.15, 0.2, 0.25], [0, 0, 1]);
-  const yS1 = useTransform(aboutScrollY, [0, 0.05, 0.1], [40, 40, 0]);
-  const yS2 = useTransform(aboutScrollY, [0.15, 0.2, 0.25], [40, 40, 0]);
-
-  // Card 1
-  const radiusC1 = useTransform(aboutScrollY, [0.45, 0.6], [0, 150]);
-  const clipPathC1 = useMotionTemplate`circle(${radiusC1}% at center)`;
-  const scaleC1 = useTransform(aboutScrollY, [0.45, 0.6], [0.8, 1]);
-  const opacityC1 = useTransform(aboutScrollY, [0.45, 0.5], [0, 1]);
-  const pointerEventsC1 = useTransform(aboutScrollY, (v) => (v > 0.45 && v < 0.6 ? "auto" : "none"));
-
-  // Card 2
-  const radiusC2 = useTransform(aboutScrollY, [0.6, 0.75], [0, 150]);
-  const clipPathC2 = useMotionTemplate`circle(${radiusC2}% at center)`;
-  const scaleC2 = useTransform(aboutScrollY, [0.6, 0.75], [0.8, 1]);
-  const opacityC2 = useTransform(aboutScrollY, [0.6, 0.65], [0, 1]);
-  const pointerEventsC2 = useTransform(aboutScrollY, (v) => (v > 0.6 && v < 0.75 ? "auto" : "none"));
-
-  // Card 3
-  const radiusC3 = useTransform(aboutScrollY, [0.75, 0.9], [0, 150]);
-  const clipPathC3 = useMotionTemplate`circle(${radiusC3}% at center)`;
-  const scaleC3 = useTransform(aboutScrollY, [0.75, 0.9], [0.8, 1]);
-  const opacityC3 = useTransform(aboutScrollY, [0.75, 0.8], [0, 1]);
-  const pointerEventsC3 = useTransform(aboutScrollY, (v) => (v > 0.75 ? "auto" : "none"));
+  const [cardsActive, setCardsActive] = useState(false);
 
   const { scrollYProgress: portfolioScrollY } = useScroll({
     target: portfolioScrollRef,
@@ -617,179 +608,157 @@ export default function App() {
 
       <main className="space-y-32 pb-32">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative pt-20 px-4 md:px-6 min-h-screen lg:min-h-[105vh] flex flex-col items-center justify-between overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Minimalist Background Video */}
+        <section ref={heroRef} className="relative w-full h-screen flex items-end overflow-hidden">
+          {/* Immersive Background Image with Dark Atmosphere Overlay */}
+          <div className="absolute inset-0 z-0">
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isLoading ? 0 : 0.25 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute inset-0 z-0"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: isLoading ? 0 : 1, scale: isLoading ? 1.05 : 1 }}
+              transition={{ duration: 1.8, ease: "easeOut" }}
+              className="w-full h-full"
             >
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="w-full h-full object-cover"
-              >
-                <source src="https://videos.pexels.com/video-files/3773486/3773486-sd_640_360_30fps.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-black opacity-87" />
+              <img 
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" 
+                alt="Reconstruir Engenharia - Residência Alto Padrão" 
+                className="w-full h-full object-cover filter brightness-90 contrast-[1.02]"
+                referrerPolicy="no-referrer"
+              />
             </motion.div>
             
-            {/* Gradient masks for seamless blending */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isLoading ? 0 : 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-10" 
-            />
+            {/* Multi-layered cinematic gradient overlays for pristine text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-neutral-950/20 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/30 z-10" />
             
-            {/* Ambient light blobs */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: isLoading ? 0 : 1, scale: isLoading ? 0.8 : 1 }}
-              transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-              className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-primary/5 blur-[120px] mix-blend-screen animate-pulse z-20" 
-              style={{ animationDuration: '8s' }} 
-            />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: isLoading ? 0 : 1, scale: isLoading ? 0.8 : 1 }}
-              transition={{ duration: 2, ease: "easeOut", delay: 0.7 }}
-              className="absolute top-[20%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] mix-blend-screen animate-pulse z-20" 
-              style={{ animationDuration: '12s', animationDelay: '2s' }} 
-            />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay z-20" />
+            {/* Soft Ambient Light Blobs in the corners */}
+            <div className="absolute top-0 left-0 w-[50vw] h-[50vw] rounded-full bg-primary/5 blur-[120px] mix-blend-screen pointer-events-none z-10" />
+            <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] mix-blend-screen pointer-events-none z-10" />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay z-10 pointer-events-none" />
           </div>
 
-          {/* Centered Hero Typography block */}
-          <div className="flex-grow min-h-[70vh] md:min-h-[65vh] flex flex-col justify-center items-center text-center max-w-4xl mx-auto relative z-30 w-full py-8 md:py-12">
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoading ? "hidden" : "visible"}
-              className="flex flex-col items-center text-center space-y-8"
-            >
-              <motion.h1 
-                variants={itemVariants}
-                className="font-heading text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-balance leading-[1.1] text-center"
-              >
-                Não levamos <span className="text-white/40">problemas,</span><br />
-                levamos{' '}
-                <span className="relative inline-block whitespace-nowrap">
-                  <span className="relative z-10 bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent bg-300% animate-gradient">
-                    soluções.
-                  </span>
-                  <svg className="absolute -bottom-3 left-0 w-full h-3 text-primary/30 -z-10 overflow-visible" viewBox="0 0 100 10" preserveAspectRatio="none">
-                    <motion.path 
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 1 }}
-                      transition={{ duration: 1.5, delay: 0.8, ease: "easeInOut" }}
-                      d="M0 5 Q 50 10 100 5" 
-                      stroke="currentColor" 
-                      strokeWidth="3" 
-                      strokeLinecap="round"
-                      fill="transparent" 
-                    />
-                  </svg>
-                </span>
-              </motion.h1>
-
-              <motion.p 
-                variants={itemVariants} 
-                className="text-muted-foreground text-sm md:text-base max-w-xl leading-relaxed font-light text-balance"
-              >
-                Há 10 anos executando obras e reformas de alto padrão. Nossa missão é entregar <span className="text-foreground font-medium font-normal">tranquilidade</span> e <span className="text-foreground font-medium font-normal">excelência</span>.
-              </motion.p>
-
-              <motion.div variants={itemVariants} className="flex justify-center pt-1">
-                <button 
-                  onClick={() => setIsQuoteModalOpen(true)}
-                  className="group relative h-11 px-6 rounded-full bg-primary text-primary-foreground text-xs font-semibold tracking-wider flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_25px_-8px_var(--primary)] overflow-hidden cursor-pointer"
+          {/* Cinematic Layout Container - Matches screenshot structure */}
+          <div className="absolute inset-0 z-20 flex items-end pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1500px] mx-auto w-full">
+            <div className="grid lg:grid-cols-12 gap-8 items-end w-full">
+              {/* Left Column: Huge Uppercase Display Typography & Description */}
+              <div className="lg:col-span-8 space-y-6 sm:space-y-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 40 : 0 }}
+                  transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                  <span className="relative z-10">SOLICITAR ORÇAMENTO</span>
-                  <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
-                </button>
-              </motion.div>
-            </motion.div>
-
-            {/* Elegant Bouncing Scroll Indicator */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="absolute bottom-4 flex flex-col items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-medium"
-            >
-              <span>Rolar para explorar</span>
-              <div className="w-5 h-8 border border-white/10 rounded-full p-0.5 flex justify-center">
-                <motion.div 
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                  className="w-1 h-1 bg-primary rounded-full"
-                />
+                  <h1 className="font-heading text-[1.95rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.4rem] font-normal uppercase tracking-normal leading-[1.05] text-white">
+                    SUA OBRA ENTREGUE <br className="hidden sm:inline" />
+                    NO PRAZO E SEM <br />
+                    <span className="text-[#9BE2E6] font-medium tracking-wide bg-gradient-to-r from-[#9BE2E6] via-[#b3eff2] to-[#88d5d9] bg-clip-text text-transparent block sm:inline">
+                      SURPRESAS NO ORÇAMENTO.
+                    </span>
+                  </h1>
+                </motion.div>
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 30 : 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-neutral-300 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-lg text-balance"
+                >
+                  Com 10 anos de experiência, planejamos e executamos construções e reformas residenciais e comerciais de alto padrão sob rigor técnico absoluto. Garantimos previsibilidade financeira, transparência e controle de prazos.
+                </motion.p>
               </div>
-            </motion.div>
-          </div>
 
-          {/* Sliding Image Runway Section */}
-          <div className="w-full relative z-30 py-12 md:py-20 overflow-hidden select-none">
-            <div className="flex flex-col gap-8 w-full max-w-[100vw]">
-              {/* Row 1 - Slides left */}
-              <motion.div 
-                style={{ x: x1 }}
-                className="flex gap-6 whitespace-nowrap"
-              >
-                {[...col1Images, ...col3Images, ...col2Images].map((url, idx) => (
-                  <div 
-                    key={idx} 
-                    className="relative flex-shrink-0 w-[280px] md:w-[380px] aspect-[16/10] rounded-2xl overflow-hidden group shadow-xl border border-white/10 bg-neutral-900"
+              {/* Right Column: Dynamic Action Button & Subtle Scroll Indicator */}
+              <div className="lg:col-span-4 flex flex-col items-start lg:items-end gap-6 sm:gap-8 justify-end">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: isLoading ? 0 : 1, scale: isLoading ? 0.95 : 1 }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                >
+                  <button 
+                    onClick={() => setIsQuoteModalOpen(true)}
+                    className="px-6 py-3.5 sm:px-7 sm:py-4 rounded-full bg-[#9BE2E6] text-neutral-950 text-[11px] sm:text-xs font-bold tracking-widest flex items-center gap-4 transition-all duration-300 hover:bg-[#82c9cd] hover:scale-[1.02] active:scale-95 group shadow-lg cursor-pointer"
                   >
-                    <img 
-                      src={url} 
-                      alt={`Reconstruir Projeto - ${idx}`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                      <div>
-                        <p className="text-xs text-primary font-mono uppercase tracking-wider mb-1">PROJETO PREMIUM</p>
-                        <h4 className="text-white text-sm font-heading font-medium">Reconstruir Engenharia</h4>
-                      </div>
+                    <span className="uppercase">Solicitar Orçamento</span>
+                    <div className="w-8 h-8 rounded-full bg-neutral-950 text-[#9BE2E6] flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <ArrowRight className="w-4 h-4 -rotate-45" />
                     </div>
-                  </div>
-                ))}
-              </motion.div>
+                  </button>
+                </motion.div>
 
-              {/* Row 2 - Slides right */}
-              <motion.div 
-                style={{ x: x2 }}
-                className="flex gap-6 whitespace-nowrap"
-              >
-                {[...col2Images, ...col1Images, ...col3Images].map((url, idx) => (
-                  <div 
-                    key={idx} 
-                    className="relative flex-shrink-0 w-[280px] md:w-[380px] aspect-[16/10] rounded-2xl overflow-hidden group shadow-xl border border-white/10 bg-neutral-900"
-                  >
-                    <img 
-                      src={url} 
-                      alt={`Reconstruir Projeto - ${idx}`} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                      <div>
-                        <p className="text-xs text-primary font-mono uppercase tracking-wider mb-1">ACABAMENTO EXTRAORDINÁRIO</p>
-                        <h4 className="text-white text-sm font-heading font-medium">Reconstruir Engenharia</h4>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
+                {/* Minimalist vertical scroll design key */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isLoading ? 0 : 0.6 }}
+                  transition={{ duration: 1.2, delay: 0.7 }}
+                  className="hidden sm:flex items-center gap-3 text-[10px] text-neutral-400 uppercase tracking-[0.2em]"
+                >
+                  <span>Explorar</span>
+                  <div className="w-8 h-[1px] bg-neutral-600" />
+                </motion.div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* Sliding Image Runway Section */}
+        <section className="w-full relative py-12 md:py-20 overflow-hidden select-none bg-background">
+          <div className="w-[95%] max-w-[1500px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 mb-8">
+            <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
+              // Portfólio em Foco
+            </span>
+            <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-light tracking-tight mt-2 text-foreground">
+              Nossa Precisão em Detalhes
+            </h2>
+          </div>
+          <div className="flex flex-col gap-6 sm:gap-8 w-full max-w-[100vw]">
+            {/* Row 1 - Slides left */}
+            <motion.div 
+              style={{ x: x1 }}
+              className="flex gap-4 sm:gap-6 whitespace-nowrap"
+            >
+              {[...col1Images, ...col3Images, ...col2Images].map((url, idx) => (
+                <div 
+                  key={idx} 
+                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[380px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
+                >
+                  <img 
+                    src={url} 
+                    alt={`Reconstruir Projeto - ${idx}`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5">
+                    <div>
+                      <p className="text-[9px] sm:text-xs text-primary font-mono uppercase tracking-wider mb-0.5">PROJETO PREMIUM</p>
+                      <h4 className="text-white text-xs sm:text-sm font-heading font-medium">Reconstruir Engenharia</h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Row 2 - Slides right */}
+            <motion.div 
+              style={{ x: x2 }}
+              className="flex gap-4 sm:gap-6 whitespace-nowrap"
+            >
+              {[...col2Images, ...col1Images, ...col3Images].map((url, idx) => (
+                <div 
+                  key={idx} 
+                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[380px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
+                >
+                  <img 
+                    src={url} 
+                    alt={`Reconstruir Projeto - ${idx}`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-5">
+                    <div>
+                      <p className="text-[9px] sm:text-xs text-primary font-mono uppercase tracking-wider mb-0.5">ACABAMENTO EXTRAORDINÁRIO</p>
+                      <h4 className="text-white text-xs sm:text-sm font-heading font-medium">Reconstruir Engenharia</h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
@@ -799,154 +768,176 @@ export default function App() {
         </div>
 
         {/* About Section */}
-        <section id="sobre" ref={aboutRef} className="relative w-full h-[600vh] scroll-mt-32">
-          {/* Sticky container that fits the viewport */}
-          <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-background">
+        <section id="sobre" className="relative w-full py-24 sm:py-32 md:py-40 bg-background scroll-mt-24">
+          <div className="max-w-4xl lg:max-w-5xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-12">
             
             {/* Intro Content */}
-            <motion.div 
-              style={{ opacity: introOpacity, pointerEvents: introPointerEvents as any }}
-              className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 md:px-10 z-10"
-            >
-              <div className="max-w-4xl lg:max-w-5xl mx-auto w-full">
-                <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative">
-                  {/* Left Column (Sticky Indicator) */}
-                  <motion.div 
-                    style={{ opacity: opacityTitle, x: xTitle }}
-                    className="lg:col-span-4 space-y-1.5"
-                  >
-                    <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
-                      (01) Sobre Nós
-                    </span>
-                    <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
-                      Precisão & Rigor.
-                    </p>
-                  </motion.div>
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start relative mb-16 sm:mb-24">
+              {/* Left Column (Section Indicator) */}
+              <div className="lg:col-span-4 space-y-1.5">
+                <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
+                  (01) Sobre Nós
+                </span>
+                <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
+                  Método e Compromisso.
+                </p>
+              </div>
 
-                  {/* Right Column (Intro Texts) */}
-                  <div className="lg:col-span-8 space-y-8 md:space-y-10 relative flex flex-col justify-center">
-                    <motion.div style={{ opacity: opacityS1, y: yS1 }}>
-                      <h3 className="font-heading text-3xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight text-balance leading-[1.3] text-foreground flex flex-wrap">
-                        { "Enquanto muitos focam apenas em fazer o serviço, nós nos preocupamos com a excelência de cada detalhe.".split(" ").map((word, index) => {
-                          const start = 0.05 + (index * 0.005);
-                          const end = start + 0.04;
-                          const opacity = useTransform(aboutScrollY, [start, end], [0.05, 1]);
-                          return (
-                            <motion.span key={index} style={{ opacity }} className="inline-block mr-[0.3em]">
-                              {word}
-                            </motion.span>
-                          );
-                        })}
-                      </h3>
-                    </motion.div>
-                    <motion.div style={{ opacity: opacityS2, y: yS2 }}>
-                      <p className="text-base md:text-lg font-light text-muted-foreground/95 leading-relaxed max-w-2xl flex flex-wrap">
-                        { "Há 10 anos a RECONSTRUIR transforma projetos em realidade guiando cada etapa com rigor normativo, garantia total e respeito absoluto ao seu investimento.".split(" ").map((word, index) => {
-                          const start = 0.20 + (index * 0.005);
-                          const end = start + 0.04;
-                          const opacity = useTransform(aboutScrollY, [start, end], [0.05, 1]);
-                          return (
-                            <motion.span key={index} style={{ opacity }} className="inline-block mr-[0.3em]">
-                              {word}
-                            </motion.span>
-                          );
-                        })}
-                      </p>
-                    </motion.div>
+              {/* Right Column (Intro Texts) */}
+              <div className="lg:col-span-8 space-y-6">
+                <h3 className="font-heading text-3xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight text-balance leading-[1.25] text-foreground">
+                  Mais do que executar obras, garantimos a segurança e o controle que o seu patrimônio exige.
+                </h3>
+                <p className="text-base md:text-lg font-light text-muted-foreground/90 leading-relaxed max-w-2xl mt-4">
+                  Com uma década de história, a RECONSTRUIR une engenharia de precisão a uma gestão financeira transparente. Eliminamos riscos e dores de cabeça para transformar projetos de alto padrão em realidades sólidas.
+                </p>
+              </div>
+            </div>
+
+            {/* The 3 Glass Cards Grid */}
+            <motion.div 
+              onViewportEnter={() => setCardsActive(true)}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12 sm:mt-16"
+            >
+              {/* Card 1: 10 Anos */}
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+                {/* Subtle light reflections on glass card borders */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                
+                {/* Subtle dark image background with low opacity for visual texture */}
+                <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-[0.05] mix-blend-luminosity filter brightness-40 blur-[0.5px]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=50" 
+                    alt="Fundo Experiência" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Top of Card */}
+                <div className="relative z-10 flex justify-between items-center mb-8">
+                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                    <Clock className="w-4 h-4 text-white/70" />
+                  </div>
+                  <span className="text-[9px] font-mono tracking-[0.25em] text-primary uppercase font-medium">
+                    // EXPERIÊNCIA
+                  </span>
+                </div>
+
+                {/* Main Content (Numeric and Text) */}
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-baseline font-heading">
+                    <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
+                      <AnimatedNumber value={10} active={cardsActive} />
+                    </span>
+                    <span className="text-primary text-3xl font-light ml-1 select-none font-mono">+</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
+                      Anos de Tradição e Confiança
+                    </h4>
+                    <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                      Uma década de atuação sólida entregando obras de alta complexidade com total respeito ao seu orçamento e projeto.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Garantia Total */}
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+                {/* Subtle light reflections on glass card borders */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                
+                {/* Subtle dark image background with low opacity for visual texture */}
+                <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-[0.05] mix-blend-luminosity filter brightness-40 blur-[0.5px]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=50" 
+                    alt="Fundo Segurança" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Top of Card */}
+                <div className="relative z-10 flex justify-between items-center mb-8">
+                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                    <ShieldCheck className="w-4 h-4 text-white/70" />
+                  </div>
+                  <span className="text-[9px] font-mono tracking-[0.25em] text-[#9BE2E6] uppercase font-medium">
+                    // SEGURANÇA
+                  </span>
+                </div>
+
+                {/* Main Content (Numeric and Text) */}
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-baseline font-heading">
+                    <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
+                      <AnimatedNumber value={100} active={cardsActive} />
+                    </span>
+                    <span className="text-[#9BE2E6] text-3xl font-light ml-1 select-none font-mono">%</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
+                      Garantia e Pós-Obra Ativo
+                    </h4>
+                    <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                      Tranquilidade absoluta mesmo após as chaves. Nosso pós-venda técnico resolve qualquer eventualidade de forma imediata.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Conformidade NBR */}
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+                {/* Subtle light reflections on glass card borders */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                
+                {/* Subtle dark image background with low opacity for visual texture */}
+                <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-[0.05] mix-blend-luminosity filter brightness-40 blur-[0.5px]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=50" 
+                    alt="Fundo Engenharia" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Top of Card */}
+                <div className="relative z-10 flex justify-between items-center mb-8">
+                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                    <Award className="w-4 h-4 text-white/70" />
+                  </div>
+                  <span className="text-[9px] font-mono tracking-[0.25em] text-primary uppercase font-medium">
+                    // ENGENHARIA
+                  </span>
+                </div>
+
+                {/* Main Content (Numeric and Text) */}
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-baseline font-heading">
+                    <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
+                      <AnimatedNumber value={100} active={cardsActive} />
+                    </span>
+                    <span className="text-primary text-3xl font-light ml-1 select-none font-mono">%</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
+                      Conformidade e Rigor Técnico
+                    </h4>
+                    <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                      Segurança estrutural máxima e alinhamento irrestrito com as normas da ABNT para valorização a longo prazo do seu patrimônio.
+                    </p>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 1: 10 Anos */}
-            <motion.div 
-              style={{ clipPath: clipPathC1, opacity: opacityC1, pointerEvents: pointerEventsC1 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-neutral-950 z-20 px-4 overflow-hidden"
-            >
-              <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60" 
-                  alt="Fundo Experiência 10 Anos" 
-                  className="w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-50 contrast-[1.1]" 
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/30 to-neutral-950/80" />
-              </div>
-              <motion.div style={{ scale: scaleC1 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center mb-2 border border-primary/30">
-                  <Clock className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                </div>
-                <div className="space-y-4">
-                  <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
-                    Experiência Comprovada
-                  </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-foreground tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">10 Anos</h4>
-                  <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
-                    Uma década transformando sonhos em estruturas de altíssima fidelidade. Nossa jornada é pavimentada com rigor normativo, gestão inteligente de prazos e entrega bem-sucedida de projetos sofisticados de alto padrão.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Card 2: Garantia Total */}
-            <motion.div 
-              style={{ clipPath: clipPathC2, opacity: opacityC2, pointerEvents: pointerEventsC2 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-[#EAE6E1] text-neutral-900 z-30 px-4 overflow-hidden"
-            >
-              <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=60" 
-                  alt="Fundo Confiança & Garantia" 
-                  className="w-full h-full object-cover opacity-40 mix-blend-multiply filter contrast-[1.2] brightness-[1.02]" 
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-[#EAE6E1]/50 backdrop-blur-[1px]" />
-              </div>
-              <motion.div style={{ scale: scaleC2 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-neutral-900/10 backdrop-blur-md flex items-center justify-center mb-2 border border-neutral-900/15">
-                  <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-neutral-800" />
-                </div>
-                <div className="space-y-4">
-                  <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-neutral-700 font-medium block">
-                    Confiança & Segurança Real
-                  </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-neutral-950 tracking-tight">Garantia Total</h4>
-                  <p className="text-lg md:text-2xl text-neutral-800 leading-relaxed font-normal max-w-2xl mx-auto">
-                    Suporte irrestrito e fidelidade ao seu investimento. Nosso pós-venda atuante e acompanhamento pós-chave garantem que sua única tarefa seja usufruir de ambientes intocáveis, seguros e perfeitamente duráveis.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Card 3: Padrão NBR */}
-            <motion.div 
-              style={{ clipPath: clipPathC3, opacity: opacityC3, pointerEvents: pointerEventsC3 as any }}
-              className="absolute inset-0 flex items-center justify-center bg-neutral-950 z-40 px-4 overflow-hidden"
-            >
-              <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60" 
-                  alt="Fundo Engenharia & Normas Técnicas" 
-                  className="w-full h-full object-cover opacity-40 mix-blend-luminosity filter brightness-50 contrast-[1.1]" 
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/30 to-neutral-950/80" />
-              </div>
-              <motion.div style={{ scale: scaleC3 }} className="relative z-10 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center mb-2 border border-primary/30">
-                  <Award className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-                </div>
-                <div className="space-y-4">
-                  <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
-                    Rigor Técnico & Engenharia
-                  </span>
-                  <h4 className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-foreground tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">Padrão NBR</h4>
-                  <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
-                    Soberania técnica e total aderência às diretrizes da ABNT. Garantimos cálculos estruturais irretocáveis, processos auditados e conformidade absoluta. Conosco, a integridade da sua obra é prioridade máxima.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
           </div>
         </section>
 
@@ -966,7 +957,7 @@ export default function App() {
                   (02) Especialidades
                 </span>
                 <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
-                  O que fazemos de melhor.
+                  Engenharia e Soluções.
                 </p>
               </motion.div>
 
@@ -1013,9 +1004,9 @@ export default function App() {
                           </span>
                         </div>
                         <div className="space-y-2">
-                          <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Elétrica</h3>
+                          <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Sistemas Elétricos</h3>
                           <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                            Nosso serviço mais procurado. Instalações elétricas seguras, modernas e dimensionadas perfeitamente para sua necessidade, de acordo com as normas técnicas vigentes, evitando qualquer risco ou desperdício de energia.
+                            Instalações elétricas seguras, otimizadas e dimensionadas com precisão de carga para o seu imóvel. Total conformidade técnica para evitar sobrecargas e garantir máxima eficiência energética.
                           </p>
                         </div>
                       </div>
@@ -1064,9 +1055,9 @@ export default function App() {
                           </span>
                         </div>
                         <div className="space-y-2">
-                          <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Pintura & Acabamento</h3>
+                          <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Pintura e Acabamento Premium</h3>
                           <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                            Pintura de alto padrão, interna e externa. Preparamos as superfícies com rigor técnico absoluto para garantir durabilidade extrema e um visual impecável que valoriza o seu imóvel.
+                            Execução de alta performance com materiais de linha superior. Garantimos superfícies lisas, uniformes e de alta resistência contra intempéries, valorizando a estética do seu patrimônio.
                           </p>
                         </div>
                       </div>
@@ -1114,9 +1105,9 @@ export default function App() {
                             </span>
                           </div>
                           <div className="space-y-1.5">
-                            <h3 className="font-heading text-lg font-medium text-foreground">Gesso</h3>
+                            <h3 className="font-heading text-lg font-medium text-foreground">Gesso e Drywall</h3>
                             <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                              Sancas, rebaixamentos modernos e divisórias elegantes com acabamento liso, simetria exata e nivelamento perfeito.
+                              Rebaixamentos modernos, sancas acústicas e divisórias de Drywall de alta densidade. Alinhamento perfeito e superfícies prontas para os melhores projetos de iluminação.
                             </p>
                           </div>
                         </div>
@@ -1163,9 +1154,9 @@ export default function App() {
                             </span>
                           </div>
                           <div className="space-y-1.5">
-                            <h3 className="font-heading text-lg font-medium text-white">Revestimentos</h3>
+                            <h3 className="font-heading text-lg font-medium text-white">Pisos e Revestimentos</h3>
                             <p className="text-xs md:text-sm text-orange-50/90 leading-relaxed font-normal">
-                              Instalação de porcelanatos e pisos com paginação computadorizada precisa, juntas finas e mínimo de perda material.
+                              Assentamento profissional de pedras e porcelanatos com paginação inteligente e juntas ultrafinas. Alinhamento impecável, nivelamento garantido e desperdício zero.
                             </p>
                           </div>
                         </div>
@@ -1190,10 +1181,10 @@ export default function App() {
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-4 sm:pb-5">
                 <div className="space-y-1.5 max-w-2xl">
                   <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
-                    (03) Portfólio
+                    (03) Nosso Portfólio
                   </span>
                   <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-light tracking-tight text-foreground leading-[1.2] text-balance">
-                    Projetos executados sob o rigor da <span className="text-white font-normal">máxima precisão</span>.
+                    Projetos de alto padrão <span className="text-white font-normal">entregues com fidelidade absoluta</span>.
                   </h3>
                 </div>
                 <div className="flex items-center gap-4">
@@ -1332,7 +1323,7 @@ export default function App() {
                   (04) Depoimentos
                 </span>
                 <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
-                  A voz da confiança.
+                  Quem Constrói Conosco.
                 </p>
               </motion.div>
 
@@ -1341,7 +1332,7 @@ export default function App() {
                 <RevealStagger className="space-y-8">
                   <RevealItem>
                     <h3 className="font-heading text-2xl md:text-4xl lg:text-[2.75rem] font-light tracking-tight text-balance leading-[1.2] text-foreground">
-                      O que dizem os nossos clientes sobre a <span className="text-white font-normal">experiência Reconstruir</span>.
+                      A opinião de quem já confiou <span className="text-white font-normal">sua obra à nossa engenharia</span>.
                     </h3>
                   </RevealItem>
 
@@ -1491,7 +1482,7 @@ export default function App() {
                   (05) Contato
                 </span>
                 <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
-                  Inicie o seu projeto.
+                  Fale com um Engenheiro.
                 </p>
               </motion.div>
 
@@ -1525,12 +1516,12 @@ export default function App() {
                     <div className="space-y-4 text-left">
                       <RevealItem>
                         <h3 className="font-heading text-3xl md:text-5xl font-light tracking-tight text-balance leading-[1.15] text-foreground">
-                          Pronto para tirar o seu projeto do <span className="text-white font-normal">papel</span>?
+                          Planeje sua próxima obra com <span className="text-white font-normal">segurança e previsibilidade</span>.
                         </h3>
                       </RevealItem>
                       <RevealItem>
                         <p className="text-muted-foreground text-sm md:text-base leading-relaxed font-light max-w-2xl">
-                          Agende uma visita formal. Apresentamos projetos, discutimos ideias e formulamos um orçamento transparente, sob o rigor do nosso planejamento de engenharia, sem imprevistos ou surpresas.
+                          Solicite uma reunião técnica com nossos engenheiros. Analisamos seu projeto, apresentamos soluções de viabilidade construtiva e entregamos uma estimativa orçamentária clara, detalhada e sem custos ocultos.
                         </p>
                       </RevealItem>
                     </div>
@@ -1586,7 +1577,7 @@ export default function App() {
               </div>
               
               <p className="text-muted-foreground text-xs md:text-sm leading-relaxed font-light max-w-sm">
-                Obras e reformas sob o rigor da máxima excelência. Transformamos visões em marcos de concreto e aço.
+                Construções e reformas de alto padrão sob o rigor técnico de engenharia. Transparência, precisão de cronograma e fidelidade ao seu projeto.
               </p>
             </div>
 
@@ -1645,7 +1636,7 @@ export default function App() {
               {/* Status/Clock/Standards Column */}
               <div className="space-y-4">
                 <span className="font-mono text-[9px] md:text-[10px] text-primary uppercase tracking-widest font-semibold block">
-                  // ESPECIFICAÇÃO
+                  // SISTEMA GESTÃO
                 </span>
                 <div className="space-y-3.5 text-xs font-mono text-muted-foreground">
                   <p className="flex items-center gap-2">
@@ -1653,7 +1644,7 @@ export default function App() {
                     <span>PADRÃO ISO 9001:2015</span>
                   </p>
                   <p className="text-[11px] leading-relaxed font-light">
-                    Planejamento digital inteligente e cronograma à prova de atrasos.
+                    Metodologia ágil de planejamento integrada ao cumprimento estrito de prazos e orçamentos.
                   </p>
                 </div>
               </div>

@@ -9,6 +9,15 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionT
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
 
+import imgRes01 from './assets/images/portfolio_res_01_1783826741118.jpg';
+import imgCom02 from './assets/images/portfolio_com_02_1783826755169.jpg';
+import imgInt03 from './assets/images/portfolio_int_03_1783826766616.jpg';
+import imgRes04 from './assets/images/portfolio_res_04_1783826777189.jpg';
+import imgCom05 from './assets/images/portfolio_com_05_1783826788612.jpg';
+import imgRes06 from './assets/images/portfolio_res_06_1783826800747.jpg';
+import imgInt07 from './assets/images/portfolio_int_07_1783826812968.jpg';
+import imgCom08 from './assets/images/portfolio_com_08_1783826823609.jpg';
+
 const NAV_LINKS = [
   { id: 'sobre', label: 'Sobre Nós' },
   { id: 'servicos', label: 'Especialidades' },
@@ -21,31 +30,31 @@ const TESTIMONIALS = [
   {
     id: 1,
     name: "Maurício Albuquerque",
-    role: "Proprietário, Residência RES-01",
-    text: "A Reconstruir entregou nossa residência rigorosamente dentro do prazo acordado e sem qualquer surpresa no orçamento. O planejamento detalhado e o suporte técnico nos trouxeram total tranquilidade durante toda a obra.",
+    role: "Proprietário",
+    text: "A Reconstruir entregou nossa casa rigorosamente dentro do prazo e sem qualquer desvio no orçamento planejado. A equipe técnica nos deu total tranquilidade do início ao fim da construção.",
     rating: 5,
     code: "SYS // TST-01",
-    tag: "OBRA RESIDENCIAL DE LUXO",
+    tag: "OBRA RESIDENCIAL",
     bgImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=50&fm=webp",
   },
   {
     id: 2,
     name: "Juliana Mendes",
-    role: "Diretora de Operações, Sede Concept",
-    text: "Concluímos a reforma da nossa sede de 1.200m² sem interromper nossas atividades operacionais. A equipe técnica trabalhou com organização exemplar, silêncio e total cumprimento de metas de segurança.",
+    role: "Diretora de Operações",
+    text: "Reformamos nossa sede comercial de 1.200m² sem parar nossas atividades operacionais. A equipe foi extremamente organizada, limpa e cumpriu todas as metas de segurança e prazos.",
     rating: 5,
     code: "SYS // TST-02",
-    tag: "OBRA COMERCIAL COMPLEXA",
+    tag: "OBRA COMERCIAL",
     bgImage: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=50&fm=webp",
   },
   {
     id: 3,
     name: "Ricardo Vasconcelos",
-    role: "Arquiteto e Designer de Interiores",
-    text: "Como arquiteto de projetos de luxo, exijo fidelidade milimétrica nas especificações. A Reconstruir executa cada detalhe de paginação, iluminação e acabamento com rigor técnico absoluto e precisão impecável.",
+    role: "Arquiteto",
+    text: "Como arquiteto, exijo fidelidade total nas especificações técnicas. A Reconstruir executa os acabamentos, paginações e iluminação com perfeição e rigor técnico absoluto.",
     rating: 5,
     code: "SYS // TST-03",
-    tag: "PARCERIA TÉCNICA // ARQUITETURA",
+    tag: "PARCERIA TÉCNICA",
     bgImage: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=50&fm=webp",
   },
 ];
@@ -113,15 +122,6 @@ function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
             className="absolute inset-0 bg-primary origin-left"
           />
         </div>
-
-        <motion.span 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="text-[9px] font-mono text-muted-foreground/60 tracking-wider block pt-2"
-        >
-          CARREGANDO EXPERIÊNCIA DE ALTO PADRÃO
-        </motion.span>
       </div>
     </motion.div>
   );
@@ -386,27 +386,27 @@ export default function App() {
   }, [isLoading]);
   
   const col1Images = [
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1613490908592-fd5a121345d7?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=480&q=50&fm=webp"
+    imgRes01,
+    imgCom02,
+    imgInt03,
+    imgRes04,
+    imgCom05
   ];
 
   const col2Images = [
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=480&q=50&fm=webp"
+    imgRes06,
+    imgInt07,
+    imgCom08,
+    imgRes01,
+    imgCom02
   ];
 
   const col3Images = [
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=480&q=50&fm=webp",
-    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=480&q=50&fm=webp"
+    imgInt03,
+    imgRes04,
+    imgCom05,
+    imgRes06,
+    imgInt07
   ];
 
   const fullCol1 = [...col1Images, ...col1Images];
@@ -652,7 +652,7 @@ export default function App() {
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   className="text-neutral-300 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-lg text-balance"
                 >
-                  Com 10 anos de experiência, planejamos e executamos construções e reformas residenciais e comerciais de alto padrão sob rigor técnico absoluto. Garantimos previsibilidade financeira, transparência e controle de prazos.
+                  Construímos e reformamos imóveis residenciais e comerciais de alto padrão com total previsibilidade. Planejamento técnico rigoroso, controle de custos em tempo real e entrega rigorosamente no prazo.
                 </motion.p>
               </div>
 
@@ -771,28 +771,27 @@ export default function App() {
                   (01) Sobre Nós
                 </span>
                 <p className="text-muted-foreground text-xs md:text-sm font-light uppercase tracking-widest block">
-                  Método e Compromisso.
+                  Compromisso com o seu patrimônio.
                 </p>
               </div>
 
               {/* Right Column (Intro Texts) */}
               <div className="lg:col-span-8 space-y-6">
                 <h3 className="font-heading text-3xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight text-balance leading-[1.25] text-foreground">
-                  Mais do que executar obras, garantimos a segurança e o controle que o seu patrimônio exige.
+                  Construímos com rigor técnico para proteger e valorizar seu investimento.
                 </h3>
                 <p className="text-base md:text-lg font-light text-muted-foreground/90 leading-relaxed max-w-2xl mt-4">
-                  Com uma década de história, a RECONSTRUIR une engenharia de precisão a uma gestão financeira transparente. Eliminamos riscos e dores de cabeça para transformar projetos de alto padrão em realidades sólidas.
+                  A Reconstruir é especializada em engenharia de alto padrão. Unimos planejamento financeiro rígido a uma execução milimétrica, eliminando surpresas e atrasos. Cuidamos de todas as etapas para que você tenha tranquilidade absoluta.
                 </p>
               </div>
             </div>
 
             {/* The 3 Glass Cards Grid */}
-            <motion.div 
-              onViewportEnter={() => setCardsActive(true)}
+            <div 
               className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12 sm:mt-16"
             >
               {/* Card 1: 10 Anos */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -821,24 +820,24 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      <AnimatedNumber value={10} active={cardsActive} />
+                      10
                     </span>
                     <span className="text-primary text-3xl font-light ml-1 select-none font-mono">+</span>
                   </div>
                   
                   <div className="space-y-2">
                     <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
-                      Anos de Tradição e Confiança
+                      10 Anos de Experiência
                     </h4>
                     <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                      Uma década de atuação sólida entregando obras de alta complexidade com total respeito ao seu orçamento e projeto.
+                      Mais de uma década entregando obras complexas residenciais e comerciais com transparência de custos.
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Card 2: Garantia Total */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -867,24 +866,24 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      <AnimatedNumber value={100} active={cardsActive} />
+                      100
                     </span>
                     <span className="text-[#9BE2E6] text-3xl font-light ml-1 select-none font-mono">%</span>
                   </div>
                   
                   <div className="space-y-2">
                     <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
-                      Garantia e Pós-Obra Ativo
+                      Garantia de Entrega
                     </h4>
                     <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                      Tranquilidade absoluta mesmo após as chaves. Nosso pós-venda técnico resolve qualquer eventualidade de forma imediata.
+                      Garantimos o cumprimento fiel do projeto e assistência técnica completa no pós-obra.
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Card 3: Conformidade NBR */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-white/[0.12] hover:bg-neutral-900/50 transition-all duration-500 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl hover:-translate-y-1">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -913,22 +912,22 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      <AnimatedNumber value={100} active={cardsActive} />
+                      100
                     </span>
                     <span className="text-primary text-3xl font-light ml-1 select-none font-mono">%</span>
                   </div>
                   
                   <div className="space-y-2">
                     <h4 className="text-lg font-heading font-light text-white tracking-tight leading-tight">
-                      Conformidade e Rigor Técnico
+                      Rigor Técnico Total
                     </h4>
                     <p className="text-xs text-neutral-400 font-light leading-relaxed">
-                      Segurança estrutural máxima e alinhamento irrestrito com as normas da ABNT para valorização a longo prazo do seu patrimônio.
+                      Todas as obras seguem rigorosamente as normas técnicas da ABNT, assegurando máxima segurança e valorização do imóvel.
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </section>
@@ -998,7 +997,7 @@ export default function App() {
                         <div className="space-y-2">
                           <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Sistemas Elétricos</h3>
                           <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                            Instalações elétricas seguras, otimizadas e dimensionadas com precisão de carga para o seu imóvel. Total conformidade técnica para evitar sobrecargas e garantir máxima eficiência energética.
+                            Instalações elétricas seguras e dimensionadas com precisão de carga para o seu imóvel. Total conformidade técnica para evitar sobrecargas e garantir máxima eficiência energética.
                           </p>
                         </div>
                       </div>
@@ -1049,7 +1048,7 @@ export default function App() {
                         <div className="space-y-2">
                           <h3 className="font-heading text-xl md:text-2xl font-medium text-foreground">Pintura e Acabamento Premium</h3>
                           <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                            Execução de alta performance com materiais de linha superior. Garantimos superfícies lisas, uniformes e de alta resistência contra intempéries, valorizando a estética do seu patrimônio.
+                            Acabamento impecável com aplicação de tintas e materiais de linha superior. Superfícies lisas, uniformes e de alta durabilidade, elevando a estética e o valor de mercado do seu imóvel.
                           </p>
                         </div>
                       </div>
@@ -1099,7 +1098,7 @@ export default function App() {
                           <div className="space-y-1.5">
                             <h3 className="font-heading text-lg font-medium text-foreground">Gesso e Drywall</h3>
                             <p className="text-xs md:text-sm text-muted-foreground/75 leading-relaxed font-light">
-                              Rebaixamentos modernos, sancas acústicas e divisórias de Drywall de alta densidade. Alinhamento perfeito e superfícies prontas para os melhores projetos de iluminação.
+                              Forros de gesso modernos, sancas decorativas e divisórias de drywall. Alinhamento milimétrico e superfícies prontas para receber qualquer projeto luminotécnico.
                             </p>
                           </div>
                         </div>
@@ -1148,7 +1147,7 @@ export default function App() {
                           <div className="space-y-1.5">
                             <h3 className="font-heading text-lg font-medium text-white">Pisos e Revestimentos</h3>
                             <p className="text-xs md:text-sm text-orange-50/90 leading-relaxed font-normal">
-                              Assentamento profissional de pedras e porcelanatos com paginação inteligente e juntas ultrafinas. Alinhamento impecável, nivelamento garantido e desperdício zero.
+                              Assentamento profissional de mármores, porcelanatos e pedras naturais. Paginação inteligente com alinhamento preciso, nivelamento perfeito e desperdício mínimo de material.
                             </p>
                           </div>
                         </div>
@@ -1176,7 +1175,7 @@ export default function App() {
                     (03) Nosso Portfólio
                   </span>
                   <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-light tracking-tight text-foreground leading-[1.2] text-balance">
-                    Projetos de alto padrão <span className="text-white font-normal">entregues com fidelidade absoluta</span>.
+                    Projetos reais <span className="text-white font-normal">executados com absoluto rigor e fidelidade técnica</span>.
                   </h3>
                 </div>
                 <div className="flex items-center gap-4">
@@ -1202,8 +1201,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO RES-01"
                       area="450m²"
-                      title="Residência Minimalista de Alto Padrão"
-                      imgUrl="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Residência Unifamiliar Contemporânea"
+                      imgUrl={imgRes01}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={0}
@@ -1214,8 +1213,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO COM-02"
                       area="1.200m²"
-                      title="Sede Corporativa Concept"
-                      imgUrl="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Escritório Corporativo de Alto Padrão"
+                      imgUrl={imgCom02}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={1}
@@ -1226,8 +1225,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO INT-03"
                       area="180m²"
-                      title="Apartamento Loft Industrial"
-                      imgUrl="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Apartamento Residencial de Luxo"
+                      imgUrl={imgInt03}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={2}
@@ -1238,8 +1237,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO RES-04"
                       area="620m²"
-                      title="Villa Suspensa & Integração Externa"
-                      imgUrl="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Residência com Área de Lazer Integrada"
+                      imgUrl={imgRes04}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={3}
@@ -1250,8 +1249,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO COM-05"
                       area="3.400m²"
-                      title="Lobby & Lounge Hotel Resort"
-                      imgUrl="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Reforma de Área Comum Comercial"
+                      imgUrl={imgCom05}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={4}
@@ -1262,8 +1261,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO RES-06"
                       area="290m²"
-                      title="Refúgio Contemporâneo da Serra"
-                      imgUrl="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Residência de Campo"
+                      imgUrl={imgRes06}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={5}
@@ -1274,8 +1273,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO INT-07"
                       area="95m²"
-                      title="Espaço Gourmet & Cozinha Integrada"
-                      imgUrl="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Cozinha Gourmet Planejada"
+                      imgUrl={imgInt07}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={6}
@@ -1286,8 +1285,8 @@ export default function App() {
                     <PortfolioCard 
                       idCode="// PROJETO COM-08"
                       area="750m²"
-                      title="Clínica & Spa de Alto Padrão Aura"
-                      imgUrl="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=50&fm=webp"
+                      title="Clínica de Saúde e Bem-Estar"
+                      imgUrl={imgCom08}
                       widthClass="w-full"
                       heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
                       index={7}
@@ -1324,7 +1323,7 @@ export default function App() {
                 <RevealStagger className="space-y-8">
                   <RevealItem>
                     <h3 className="font-heading text-2xl md:text-4xl lg:text-[2.75rem] font-light tracking-tight text-balance leading-[1.2] text-foreground">
-                      A opinião de quem já confiou <span className="text-white font-normal">sua obra à nossa engenharia</span>.
+                      A satisfação de quem <span className="text-white font-normal">construiu ou reformou com total tranquilidade</span>.
                     </h3>
                   </RevealItem>
 
@@ -1508,12 +1507,12 @@ export default function App() {
                     <div className="space-y-4 text-left">
                       <RevealItem>
                         <h3 className="font-heading text-3xl md:text-5xl font-light tracking-tight text-balance leading-[1.15] text-foreground">
-                          Planeje sua próxima obra com <span className="text-white font-normal">segurança e previsibilidade</span>.
+                          Construa ou reforme seu imóvel com <span className="text-white font-normal">total segurança e orçamento garantido</span>.
                         </h3>
                       </RevealItem>
                       <RevealItem>
                         <p className="text-muted-foreground text-sm md:text-base leading-relaxed font-light max-w-2xl">
-                          Solicite uma reunião técnica com nossos engenheiros. Analisamos seu projeto, apresentamos soluções de viabilidade construtiva e entregamos uma estimativa orçamentária clara, detalhada e sem custos ocultos.
+                          Agende uma reunião técnica com nossos engenheiros. Analisamos seu projeto de arquitetura para apresentar soluções inteligentes de viabilidade e um cronograma físico-financeiro detalhado e sem surpresas.
                         </p>
                       </RevealItem>
                     </div>

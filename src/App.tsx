@@ -581,7 +581,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="space-y-32 pb-32">
+      <main className="space-y-20 pb-20">
         {/* Hero Section */}
         <section ref={heroRef} className="relative w-full h-screen flex items-end overflow-hidden">
           {/* Immersive Background Image with Dark Atmosphere Overlay */}
@@ -673,7 +673,7 @@ export default function App() {
         </section>
 
         {/* Sliding Image Runway Section */}
-        <section className="w-full relative py-12 md:py-20 overflow-hidden select-none bg-background">
+        <section className="w-full relative py-10 md:py-16 overflow-hidden select-none bg-background">
           <Container className="mb-8">
             <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
               // Portfólio em Foco
@@ -744,7 +744,7 @@ export default function App() {
         </Container>
 
         {/* About Section */}
-        <section id="sobre" className="relative w-full py-24 sm:py-32 md:py-40 bg-background scroll-mt-24">
+        <section id="sobre" className="relative w-full py-16 sm:py-20 md:py-24 bg-background scroll-mt-24">
           <Container>
             
             {/* Intro Content */}
@@ -1530,7 +1530,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-neutral-950/20 backdrop-blur-sm pt-20 pb-12">
+      <footer className="border-t border-white/5 bg-neutral-950/20 backdrop-blur-sm pt-16 pb-12">
         <Container>
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
             {/* Left Column (Brand Identity & Philosophy) */}

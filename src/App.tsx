@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Star, 
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate } from 'motion/react';
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
+import { Container } from './components/Container';
 
 import imgRes01 from './assets/images/real/20260714_004735_0005.jpg';
 import imgCom02 from './assets/images/real/20260714_004735_0006.jpg';
@@ -467,7 +468,7 @@ export default function App() {
             }`}
           >
             <div 
-              className={`mx-auto w-[95%] max-w-[1400px] flex items-center justify-between px-4 md:px-6 py-2.5 md:py-3 border transition-all duration-500 pointer-events-auto rounded-[5px] ${
+              className={`mx-auto w-[95%] max-w-app flex items-center justify-between px-xs md:px-sm py-2.5 md:py-3 border transition-all duration-500 pointer-events-auto rounded-[5px] ${
                 scrolled 
                   ? 'bg-background/85 backdrop-blur-xl border-white/5 shadow-xl' 
                   : 'bg-background/40 backdrop-blur-md border-white/5 shadow-none'
@@ -610,7 +611,7 @@ export default function App() {
           </div>
 
           {/* Cinematic Layout Container - Matches screenshot structure */}
-          <div className="absolute inset-0 z-20 flex items-end pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1500px] mx-auto w-full">
+          <div className="absolute inset-0 z-20 flex items-end pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-xs sm:px-sm md:px-md lg:px-lg xl:px-xl max-w-app mx-auto w-full">
             <div className="grid lg:grid-cols-12 gap-8 items-end w-full">
               {/* Left Column: Huge Uppercase Display Typography & Description */}
               <div className="lg:col-span-8 space-y-6 sm:space-y-8">
@@ -673,24 +674,25 @@ export default function App() {
 
         {/* Sliding Image Runway Section */}
         <section className="w-full relative py-12 md:py-20 overflow-hidden select-none bg-background">
-          <div className="w-[95%] max-w-[1500px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 mb-8">
+          <Container className="mb-md">
             <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
               // Portfólio em Foco
             </span>
             <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-light tracking-tight mt-2 text-foreground">
               Nossa Precisão em Detalhes
             </h2>
-          </div>
-          <div className="flex flex-col gap-6 sm:gap-8 w-full max-w-[100vw]">
+          </Container>
+          {/* Full-bleed intencional: a esteira de cards sangra além do container por design */}
+          <div className="flex flex-col gap-sm sm:gap-md w-full max-w-[100vw]">
             {/* Row 1 - Slides left */}
             <motion.div 
               style={{ x: x1 }}
-              className="flex gap-4 sm:gap-6 whitespace-nowrap"
+              className="flex gap-xs sm:gap-sm whitespace-nowrap"
             >
               {[...col1Images, ...col3Images, ...col2Images].map((url, idx) => (
                 <div 
                   key={idx} 
-                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[380px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
+                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[384px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
                 >
                   <img 
                     src={url} 
@@ -711,12 +713,12 @@ export default function App() {
             {/* Row 2 - Slides right */}
             <motion.div 
               style={{ x: x2 }}
-              className="flex gap-4 sm:gap-6 whitespace-nowrap"
+              className="flex gap-xs sm:gap-sm whitespace-nowrap"
             >
               {[...col2Images, ...col1Images, ...col3Images].map((url, idx) => (
                 <div 
                   key={idx} 
-                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[380px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
+                  className="relative flex-shrink-0 w-[240px] sm:w-[320px] md:w-[384px] aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden group shadow-xl border border-white/5 bg-neutral-900"
                 >
                   <img 
                     src={url} 
@@ -737,16 +739,16 @@ export default function App() {
         </section>
 
         {/* Separator */}
-        <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
+        <Container>
           <hr className="border-border" />
-        </div>
+        </Container>
 
         {/* About Section */}
         <section id="sobre" className="relative w-full py-24 sm:py-32 md:py-40 bg-background scroll-mt-24">
-          <div className="max-w-4xl lg:max-w-5xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-12">
+          <Container>
             
             {/* Intro Content */}
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start relative mb-16 sm:mb-24">
+            <div className="grid lg:grid-cols-12 gap-md lg:gap-10 items-start relative mb-16 sm:mb-24">
               {/* Left Column (Section Indicator) */}
               <div className="lg:col-span-4 space-y-1.5">
                 <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
@@ -770,10 +772,10 @@ export default function App() {
 
             {/* The 3 Glass Cards Grid */}
             <div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12 sm:mt-16"
+              className="grid grid-cols-1 md:grid-cols-12 gap-sm lg:gap-md mt-lg sm:mt-xl"
             >
               {/* Card 1: 10 Anos */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -819,7 +821,7 @@ export default function App() {
               </div>
 
               {/* Card 2: Garantia Total */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -865,7 +867,7 @@ export default function App() {
               </div>
 
               {/* Card 3: Conformidade NBR */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl">
+              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -911,13 +913,13 @@ export default function App() {
               </div>
             </div>
 
-          </div>
+          </Container>
         </section>
 
         {/* Expertise Section */}
-        <section id="servicos" className="px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-32">
-          <div className="max-w-4xl lg:max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <section id="servicos" className="scroll-mt-32">
+          <Container>
+            <div className="grid lg:grid-cols-12 gap-md lg:gap-10 items-start">
               {/* Left Column (Sticky Indicator) */}
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
@@ -1139,7 +1141,7 @@ export default function App() {
                 </div>
               </RevealStagger>
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* Portfolio Section */}
@@ -1148,10 +1150,10 @@ export default function App() {
           ref={portfolioScrollRef}
           className="relative h-[450vh] sm:h-[550vh] w-full"
         >
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-12 py-4 sm:py-6 md:py-8">
-            <div className="w-[95%] max-w-[1500px] mx-auto space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden py-4 sm:py-6 md:py-8">
+            <Container className="space-y-4 sm:space-y-6 md:space-y-8">
               {/* Header block spanning the entire width */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-4 sm:pb-5">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-xs border-b border-white/5 pb-xs sm:pb-sm">
                 <div className="space-y-1.5 max-w-2xl">
                   <span className="text-[10px] md:text-[11px] font-mono tracking-[0.25em] uppercase text-primary font-medium block">
                     (03) Nosso Portfólio
@@ -1177,9 +1179,9 @@ export default function App() {
               <div className="relative w-full overflow-hidden" ref={scrollRef}>
                 <motion.div 
                   style={{ x: portfolioX }} 
-                  className="flex gap-6 md:gap-8 w-max pr-12 py-2"
+                  className="flex gap-sm md:gap-md w-max pr-lg py-2xs"
                 >
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-01"
                       area="450m²"
@@ -1191,7 +1193,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-02"
                       area="1.200m²"
@@ -1203,7 +1205,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-03"
                       area="180m²"
@@ -1215,7 +1217,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-04"
                       area="620m²"
@@ -1227,7 +1229,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-05"
                       area="3.400m²"
@@ -1239,7 +1241,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-06"
                       area="290m²"
@@ -1251,7 +1253,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-07"
                       area="95m²"
@@ -1263,7 +1265,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
+                  <div className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] xl:w-[560px] 2xl:w-[640px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-08"
                       area="750m²"
@@ -1276,14 +1278,14 @@ export default function App() {
                   </div>
                 </motion.div>
               </div>
-            </div>
+            </Container>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="depoimentos" className="px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-32">
-          <div className="max-w-4xl lg:max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <section id="depoimentos" className="scroll-mt-32">
+          <Container>
+            <div className="grid lg:grid-cols-12 gap-md lg:gap-10 items-start">
               {/* Left Column (Sticky Indicator) */}
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
@@ -1436,13 +1438,13 @@ export default function App() {
                 </RevealStagger>
               </div>
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* CTA Section */}
-        <section id="contato" className="px-4 sm:px-6 md:px-10 lg:px-12 scroll-mt-32">
-          <div className="max-w-4xl lg:max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <section id="contato" className="scroll-mt-32">
+          <Container>
+            <div className="grid lg:grid-cols-12 gap-md lg:gap-10 items-start">
               {/* Left Column (Sticky Indicator) */}
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
@@ -1523,13 +1525,13 @@ export default function App() {
                 </motion.div>
               </div>
             </div>
-          </div>
+          </Container>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-neutral-950/20 backdrop-blur-sm pt-20 pb-12 px-4 sm:px-6 md:px-10 lg:px-12">
-        <div className="max-w-4xl lg:max-w-5xl mx-auto">
+      <footer className="border-t border-white/5 bg-neutral-950/20 backdrop-blur-sm pt-20 pb-12">
+        <Container>
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
             {/* Left Column (Brand Identity & Philosophy) */}
             <div className="lg:col-span-3 space-y-6">
@@ -1632,7 +1634,7 @@ export default function App() {
               <a href="#" className="hover:text-white transition-colors duration-300">PRIVACIDADE</a>
             </div>
           </div>
-        </div>
+        </Container>
       </footer>
 
       <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />

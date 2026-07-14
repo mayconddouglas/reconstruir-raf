@@ -583,7 +583,7 @@ export default function App() {
 
       <main className="space-y-20 pb-20">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative w-full h-screen flex items-end overflow-hidden">
+        <section ref={heroRef} className="relative w-full h-[85vh] min-h-[560px] flex items-end overflow-hidden">
           {/* Immersive Background Image with Dark Atmosphere Overlay */}
           <div className="absolute inset-0 z-0">
             <motion.div 

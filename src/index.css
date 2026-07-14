@@ -11,22 +11,17 @@
     --font-heading: 'Montenegrin Gothic One', ui-sans-serif, system-ui, sans-serif;
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-    /* ---- Spacing scale: 8pt grid, com meio-passo de 4px liberado só para
-       micro-ajustes (ícone + texto, borda fina). Nomeado semanticamente
-       para que o valor comunique intenção, não só o número. ---- */
-    --spacing-micro: 0.25rem;  /* 4px  — exceção: só ícone/texto, nunca layout */
-    --spacing-2xs:   0.5rem;   /* 8px  */
-    --spacing-xs:    1rem;     /* 16px */
-    --spacing-sm:    1.5rem;   /* 24px */
-    --spacing-md:    2rem;     /* 32px */
-    --spacing-lg:    3rem;     /* 48px */
-    --spacing-xl:    4rem;     /* 64px */
-    --spacing-2xl:   6rem;     /* 96px */
-    --spacing-3xl:   8rem;     /* 128px */
-
     /* ---- Container único do site: 1280px = 160 * 8pt, base de uma
-       grade de 12 colunas. Substitui os max-w-[1400px]/[1500px]/4xl/5xl
-       que estavam espalhados por seção. ---- */
+       grade de 12 colunas. Substitui os containers de largura fixa que
+       estavam espalhados por seção.
+       Nome "app" propositalmente único — nomes como sm/md/lg/xl/2xl são
+       reservados pelo Tailwind (usados por max-w-sm, max-w-lg etc.) e
+       sobrescrevê-los quebra os max-width pré-existentes no projeto,
+       já que padding, gap, width e max-width compartilham o mesmo
+       namespace de spacing no Tailwind v4. Por isso o projeto usa a
+       escala numérica nativa do Tailwind (p-4=16px, gap-6=24px,
+       p-8=32px, p-12=48px...) que já é múltipla de 8pt, em vez de
+       tokens nomeados. ---- */
     --container-app: 80rem;    /* 1280px */
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);

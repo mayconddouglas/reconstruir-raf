@@ -4,9 +4,10 @@ import type { ReactNode } from "react";
 /**
  * Container padrão do site.
  *
- * Substitui os max-w-[1400px] / max-w-[1500px] / max-w-4xl / max-w-5xl
- * que antes eram definidos manualmente em cada seção. Toda seção deve
- * usar este componente como wrapper de largura — nunca max-w-[...] solto.
+ * Substitui os containers de largura fixa (px absolutos e classes max-w
+ * herdadas do Tailwind, ex.: os "xl" e "5" grandes) que antes eram
+ * definidos manualmente em cada seção. Toda seção deve usar este
+ * componente como wrapper de largura — nunca um max-width solto.
  *
  * Largura: 1280px (--container-app), múltiplo de 8pt, base para 12 colunas.
  * Padding horizontal segue a escala semântica de spacing (8pt grid).
@@ -21,7 +22,7 @@ export function Container({
   return (
     <div
       className={cn(
-        "w-full max-w-app mx-auto px-xs sm:px-sm lg:px-md",
+        "w-full max-w-app mx-auto px-4 sm:px-6 lg:px-8",
         className
       )}
     >

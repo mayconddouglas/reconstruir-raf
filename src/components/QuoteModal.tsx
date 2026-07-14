@@ -70,7 +70,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       `\n` +
       `_Enviado via site oficial Reconstruir_`;
 
-    return `https://wa.me/5581999999999?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/5581987723203?text=${encodeURIComponent(text)}`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {

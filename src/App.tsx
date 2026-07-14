@@ -9,14 +9,14 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionT
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
 
-import imgRes01 from './assets/images/portfolio_res_01_1783826741118.jpg';
-import imgCom02 from './assets/images/portfolio_com_02_1783826755169.jpg';
-import imgInt03 from './assets/images/portfolio_int_03_1783826766616.jpg';
-import imgRes04 from './assets/images/portfolio_res_04_1783826777189.jpg';
-import imgCom05 from './assets/images/portfolio_com_05_1783826788612.jpg';
-import imgRes06 from './assets/images/portfolio_res_06_1783826800747.jpg';
-import imgInt07 from './assets/images/portfolio_int_07_1783826812968.jpg';
-import imgCom08 from './assets/images/portfolio_com_08_1783826823609.jpg';
+import imgRes01 from './assets/images/real/20260714_004735_0005.jpg';
+import imgCom02 from './assets/images/real/20260714_004735_0006.jpg';
+import imgInt03 from './assets/images/real/20260714_004735_0009.jpg';
+import imgRes04 from './assets/images/real/20260714_004735_0010.jpg';
+import imgCom05 from './assets/images/real/20260714_004735_0011.jpg';
+import imgRes06 from './assets/images/real/20260714_004735_0012.jpg';
+import imgInt07 from './assets/images/real/20260714_004735_0013.jpg';
+import imgCom08 from './assets/images/real/20260714_004735_0014.jpg';
 
 const NAV_LINKS = [
   { id: 'sobre', label: 'Sobre Nós' },
@@ -180,24 +180,6 @@ function PortfolioCard({ idCode, area, title, imgUrl, widthClass, heightClass, i
           loading="lazy"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/25 to-neutral-950/10 pointer-events-none" />
-      </div>
-
-      {/* Glassmorphic Caption Banner */}
-      <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-5 rounded-xl bg-neutral-950/75 backdrop-blur-md border border-white/5 z-20 transition-all duration-500 group-hover:bg-neutral-950/90 group-hover:border-primary/20">
-        <div className="flex items-center justify-between">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-[9px] md:text-[10px] text-primary uppercase tracking-widest font-semibold">{idCode}</span>
-              <span className="h-1 w-1 rounded-full bg-white/20" />
-              <span className="font-mono text-[9px] text-muted-foreground uppercase tracking-wider">{area}</span>
-            </div>
-            <h4 className="font-heading text-lg md:text-xl font-light text-foreground group-hover:text-white transition-colors">{title}</h4>
-          </div>
-          <div className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-colors duration-300">
-            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-300" />
-          </div>
-        </div>
       </div>
     </motion.div>
   );
@@ -523,7 +505,7 @@ export default function App() {
           </div>
 
           <div className="hidden lg:flex">
-            <a href="https://wa.me/5581999999999" target="_blank" rel="noreferrer" className="px-3 h-7 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold tracking-wider uppercase flex items-center gap-1 hover:bg-primary/90 transition-all duration-300">
+            <a href="https://wa.me/5581987723203" target="_blank" rel="noreferrer" className="px-3 h-7 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold tracking-wider uppercase flex items-center gap-1 hover:bg-primary/90 transition-all duration-300">
               FALAR NO WHATSAPP
               <ArrowRight className="w-3 h-3" />
             </a>
@@ -584,7 +566,7 @@ export default function App() {
               ))}
               
               <motion.a 
-                href="https://wa.me/5581999999999" 
+                href="https://wa.me/5581987723203" 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
@@ -618,8 +600,8 @@ export default function App() {
             </motion.div>
             
             {/* Multi-layered cinematic gradient overlays for pristine text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-neutral-950/20 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/60 via-transparent to-neutral-950/30 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-neutral-950/40 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/50 to-transparent z-10" />
             
             {/* Soft Ambient Light Blobs in the corners */}
             <div className="absolute top-0 left-0 w-[50vw] h-[50vw] rounded-full bg-primary/5 blur-[120px] mix-blend-screen pointer-events-none z-10" />
@@ -637,10 +619,10 @@ export default function App() {
                   animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 40 : 0 }}
                   transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h1 className="font-heading text-[1.95rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.4rem] font-normal uppercase tracking-normal leading-[1.05] text-white">
+                  <h1 className="font-heading text-[1.95rem] xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.4rem] font-normal uppercase tracking-normal leading-[1.05] text-white drop-shadow-md">
                     SUA OBRA ENTREGUE <br className="hidden sm:inline" />
                     NO PRAZO E SEM <br />
-                    <span className="text-[#9BE2E6] font-medium tracking-wide bg-gradient-to-r from-[#9BE2E6] via-[#b3eff2] to-[#88d5d9] bg-clip-text text-transparent block sm:inline">
+                    <span className="text-[#9BE2E6] font-bold tracking-wide bg-gradient-to-r from-[#9BE2E6] to-[#6bcace] bg-clip-text text-transparent block sm:inline drop-shadow-lg">
                       SURPRESAS NO ORÇAMENTO.
                     </span>
                   </h1>
@@ -650,7 +632,7 @@ export default function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 30 : 0 }}
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-neutral-300 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-lg text-balance"
+                  className="text-white drop-shadow text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-lg text-balance"
                 >
                   Construímos e reformamos imóveis residenciais e comerciais de alto padrão com total previsibilidade. Planejamento técnico rigoroso, controle de custos em tempo real e entrega rigorosamente no prazo.
                 </motion.p>
@@ -1197,98 +1179,98 @@ export default function App() {
                   style={{ x: portfolioX }} 
                   className="flex gap-6 md:gap-8 w-max pr-12 py-2"
                 >
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-01"
                       area="450m²"
                       title="Residência Unifamiliar Contemporânea"
                       imgUrl={imgRes01}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={0}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-02"
                       area="1.200m²"
                       title="Escritório Corporativo de Alto Padrão"
                       imgUrl={imgCom02}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={1}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-03"
                       area="180m²"
                       title="Apartamento Residencial de Luxo"
                       imgUrl={imgInt03}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={2}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-04"
                       area="620m²"
                       title="Residência com Área de Lazer Integrada"
                       imgUrl={imgRes04}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={3}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-05"
                       area="3.400m²"
                       title="Reforma de Área Comum Comercial"
                       imgUrl={imgCom05}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={4}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO RES-06"
                       area="290m²"
                       title="Residência de Campo"
                       imgUrl={imgRes06}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={5}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO INT-07"
                       area="95m²"
                       title="Cozinha Gourmet Planejada"
                       imgUrl={imgInt07}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={6}
                     />
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] md:w-[700px] lg:w-[850px] xl:w-[980px] 2xl:w-[1100px] flex-shrink-0">
+                  <div className="w-[300px] sm:w-[400px] md:w-[480px] lg:w-[550px] xl:w-[650px] 2xl:w-[750px] flex-shrink-0">
                     <PortfolioCard 
                       idCode="// PROJETO COM-08"
                       area="750m²"
                       title="Clínica de Saúde e Bem-Estar"
                       imgUrl={imgCom08}
                       widthClass="w-full"
-                      heightClass="h-[400px] sm:h-[50vh] md:h-[58vh] lg:h-[62vh] xl:h-[65vh] 2xl:h-[68vh]"
+                      heightClass="aspect-[4/5]"
                       index={7}
                     />
                   </div>
@@ -1520,7 +1502,7 @@ export default function App() {
                     <RevealItem>
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
                         <a 
-                          href="https://wa.me/5581999999999" 
+                          href="https://wa.me/5581987723203" 
                           target="_blank"
                           rel="noreferrer"
                           className="h-12 px-6 rounded-full bg-primary text-primary-foreground text-xs font-mono uppercase tracking-wider font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/10"
@@ -1586,7 +1568,7 @@ export default function App() {
                   </li>
                   <li className="flex items-center gap-2.5 hover:text-white transition-colors duration-300">
                     <Phone className="w-4 h-4 text-primary/75" />
-                    <span>(81) 99999-9999</span>
+                    <span>(81) 98772-3203</span>
                   </li>
                   <li className="flex items-center gap-2.5 hover:text-white transition-colors duration-300">
                     <Mail className="w-4 h-4 text-primary/75" />

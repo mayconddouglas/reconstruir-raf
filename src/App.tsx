@@ -103,14 +103,37 @@ function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
         />
 
         <div className="space-y-1">
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-4xl font-heading font-light tracking-[0.2em] text-white uppercase"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="relative inline-block"
           >
-            RECONSTRUIR
-          </motion.h2>
+            {/* Camada fantasma: contorno "blueprint" sempre visível, mostra o
+                desenho completo do nome antes da régua passar */}
+            <h2
+              aria-hidden="true"
+              className="text-3xl md:text-4xl font-heading font-light tracking-[0.2em] text-white/[0.08] uppercase whitespace-nowrap select-none"
+            >
+              RECONSTRUIR
+            </h2>
+
+            {/* Régua que varre da esquerda pra direita, revelando o nome
+                sólido atrás dela — como um traço técnico "construindo" a
+                marca */}
+            <motion.div
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.3, delay: 0.35, ease: [0.65, 0, 0.35, 1] }}
+              className="absolute inset-0 overflow-hidden"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-light tracking-[0.2em] text-white uppercase whitespace-nowrap select-none">
+                RECONSTRUIR
+              </h2>
+              {/* Ponta da régua: a linha viaja grudada na borda de revelação */}
+              <div className="absolute top-0 right-0 h-full w-[1.5px] bg-primary shadow-[0_0_8px_rgba(155,226,230,0.7)]" />
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Luxury loading progress indicator */}

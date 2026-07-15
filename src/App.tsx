@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef, ReactNode } from 'react';
 import { ArrowRight, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Star, Menu, MessageCircle, Phone, X, Instagram, Mail, MapPin, ShieldCheck, Clock, Award } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate, useInView } from 'motion/react';
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
 import { Container } from './components/Container';
@@ -309,6 +309,8 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const heroRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isHoveringTestimonials, setIsHoveringTestimonials] = useState(false);
@@ -744,7 +746,7 @@ export default function App() {
         </Container>
 
         {/* About Section */}
-        <section id="sobre" className="relative w-full py-16 sm:py-20 md:py-24 bg-background scroll-mt-24">
+        <section id="sobre" ref={statsRef} className="relative w-full py-16 sm:py-20 md:py-24 bg-background scroll-mt-24">
           <Container>
             
             {/* Intro Content */}
@@ -771,11 +773,17 @@ export default function App() {
             </div>
 
             {/* The 3 Glass Cards Grid */}
-            <div 
+            <RevealStagger
               className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mt-12 sm:mt-16"
             >
               {/* Card 1: 10 Anos */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
+              <RevealItem variants={aboutItemVariants} className="md:col-span-4">
+              <motion.div
+                whileHover="hover"
+                variants={{ hover: { y: -6 } }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-primary/20 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl transition-colors duration-500"
+              >
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -792,9 +800,13 @@ export default function App() {
 
                 {/* Top of Card */}
                 <div className="relative z-10 flex justify-between items-center mb-8">
-                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                  <motion.div
+                    variants={{ hover: { scale: 1.1 } }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md"
+                  >
                     <Clock className="w-4 h-4 text-white/70" />
-                  </div>
+                  </motion.div>
                   <span className="text-[9px] font-mono tracking-[0.25em] text-primary uppercase font-medium">
                     // EXPERIÊNCIA
                   </span>
@@ -804,7 +816,7 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      10
+                      <AnimatedNumber value={10} active={statsInView} />
                     </span>
                     <span className="text-primary text-3xl font-light ml-1 select-none font-mono">+</span>
                   </div>
@@ -818,10 +830,17 @@ export default function App() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+              </RevealItem>
 
               {/* Card 2: Garantia Total */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
+              <RevealItem variants={aboutItemVariants} className="md:col-span-4">
+              <motion.div
+                whileHover="hover"
+                variants={{ hover: { y: -6 } }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-primary/20 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl transition-colors duration-500"
+              >
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -838,9 +857,13 @@ export default function App() {
 
                 {/* Top of Card */}
                 <div className="relative z-10 flex justify-between items-center mb-8">
-                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                  <motion.div
+                    variants={{ hover: { scale: 1.1 } }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md"
+                  >
                     <ShieldCheck className="w-4 h-4 text-white/70" />
-                  </div>
+                  </motion.div>
                   <span className="text-[9px] font-mono tracking-[0.25em] text-[#9BE2E6] uppercase font-medium">
                     // SEGURANÇA
                   </span>
@@ -850,7 +873,7 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      100
+                      <AnimatedNumber value={100} active={statsInView} />
                     </span>
                     <span className="text-[#9BE2E6] text-3xl font-light ml-1 select-none font-mono">%</span>
                   </div>
@@ -864,10 +887,17 @@ export default function App() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+              </RevealItem>
 
               {/* Card 3: Conformidade NBR */}
-              <div className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl md:col-span-4">
+              <RevealItem variants={aboutItemVariants} className="md:col-span-4">
+              <motion.div
+                whileHover="hover"
+                variants={{ hover: { y: -6 } }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group rounded-[2rem] bg-neutral-950/40 backdrop-blur-3xl border border-white/[0.06] hover:border-primary/20 p-8 sm:p-10 flex flex-col justify-between overflow-hidden min-h-[360px] sm:min-h-[380px] shadow-2xl transition-colors duration-500"
+              >
                 {/* Subtle light reflections on glass card borders */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -884,9 +914,13 @@ export default function App() {
 
                 {/* Top of Card */}
                 <div className="relative z-10 flex justify-between items-center mb-8">
-                  <div className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md">
+                  <motion.div
+                    variants={{ hover: { scale: 1.1 } }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-10 h-10 rounded-full bg-white/[0.02] border border-white/10 flex items-center justify-center backdrop-blur-md"
+                  >
                     <Award className="w-4 h-4 text-white/70" />
-                  </div>
+                  </motion.div>
                   <span className="text-[9px] font-mono tracking-[0.25em] text-primary uppercase font-medium">
                     // ENGENHARIA
                   </span>
@@ -896,7 +930,7 @@ export default function App() {
                 <div className="relative z-10 space-y-6">
                   <div className="flex items-baseline font-heading">
                     <span className="text-6xl sm:text-7xl font-light text-white tracking-tighter leading-none">
-                      100
+                      <AnimatedNumber value={100} active={statsInView} />
                     </span>
                     <span className="text-primary text-3xl font-light ml-1 select-none font-mono">%</span>
                   </div>
@@ -910,8 +944,9 @@ export default function App() {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+              </RevealItem>
+            </RevealStagger>
 
           </Container>
         </section>

@@ -81,6 +81,11 @@ interface LuxuryPreloaderProps {
 }
 
 function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 2200);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -134,17 +139,6 @@ function LuxuryPreloader({ onComplete }: LuxuryPreloaderProps) {
               <div className="absolute top-0 right-0 h-full w-[1.5px] bg-primary shadow-[0_0_8px_rgba(155,226,230,0.7)]" />
             </motion.div>
           </motion.div>
-        </div>
-
-        {/* Luxury loading progress indicator */}
-        <div className="w-full h-[1px] bg-white/5 relative overflow-hidden mt-6">
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 2.2, ease: "easeInOut" }}
-            onAnimationComplete={onComplete}
-            className="absolute inset-0 bg-primary origin-left"
-          />
         </div>
       </div>
     </motion.div>

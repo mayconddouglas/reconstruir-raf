@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef, ReactNode } from 'react';
 import { ArrowRight, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Star, Menu, MessageCircle, Phone, X, Instagram, Mail, MapPin, ShieldCheck, Clock, Award } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate, useInView } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
 import { Container } from './components/Container';
@@ -1691,7 +1692,7 @@ export default function App() {
 
       <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
       <BackToTopButton />
+      <Analytics />
     </div>
   );
 }
-

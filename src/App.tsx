@@ -336,6 +336,7 @@ export default function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   const portfolioScrollRef = useRef<HTMLDivElement>(null);
+  const portfolioInView = useInView(portfolioScrollRef, { margin: "-20% 0px -20% 0px" });
   const scrollRef = useRef<HTMLDivElement>(null);
   const [translateX, setTranslateX] = useState(0);
 
@@ -1693,7 +1694,7 @@ export default function App() {
 
       <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
       <BackToTopButton />
-      <WhatsAppButton />
+      <WhatsAppButton showNudge={portfolioInView} />
       <Analytics />
     </div>
   );

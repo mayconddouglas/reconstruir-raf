@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const PHONE_NUMBER = '5581987723203';
 const DEFAULT_MESSAGE =
@@ -17,7 +17,7 @@ const WHATSAPP_LINK = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(
  * bem sutil, o suficiente pra ser reconhecido de cara sem competir
  * visualmente com o resto da página.
  */
-export function WhatsAppButton() {
+export function WhatsAppButton({ showNudge = false }: { showNudge?: boolean }) {
   return (
     <motion.a
       href={WHATSAPP_LINK}
@@ -49,10 +49,31 @@ export function WhatsAppButton() {
         </svg>
       </span>
 
-      {/* Rótulo que aparece só no hover (desktop) — mantém discreto no mobile */}
-      <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-neutral-950/90 border border-white/10 px-3 py-1.5 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
-        Fale no WhatsApp
-      </span>
+      {/* Mensagem curta e contextual: aparece enquanto o usuário está
+          navegando pelo portfólio, incentivando o contato — sem ser
+          pop-up, só um balãozinho ao lado do botão */}
+      <AnimatePresence>
+        {showNudge && (
+          <motion.span
+            key="nudge"
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 8 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-neutral-950/90 border border-[#25D366]/30 px-3 py-1.5 text-xs text-white shadow-xl"
+          >
+            Gostou? Fale com a gente →
+          </motion.span>
+        )}
+      </AnimatePresence>
+
+      {/* Rótulo padrão, só no hover (desktop) — não mostra junto com a
+          mensagem contextual acima pra não sobrepor texto */}
+      {!showNudge && (
+        <span className="pointer-events-none absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-neutral-950/90 border border-white/10 px-3 py-1.5 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+          Fale no WhatsApp
+        </span>
+      )}
     </motion.a>
   );
 }

@@ -29,7 +29,7 @@ export const BackToTopButton = () => {
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.3 }}
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 z-50 p-3 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-md text-foreground hover:bg-background transition-colors pointer-events-auto"
+      className="fixed bottom-24 right-8 z-40 p-3 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-md text-foreground hover:bg-background transition-colors pointer-events-auto"
       aria-label="Voltar ao topo"
     >
       <ArrowUp className="w-5 h-5" />

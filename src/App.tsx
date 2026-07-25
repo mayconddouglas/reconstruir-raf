@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Star, 
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionTemplate, useInView } from 'motion/react';
 import QuoteModal from './components/QuoteModal';
 import { BackToTopButton } from './components/BackToTopButton';
+import { WhatsAppButton } from './components/WhatsAppButton';
 import { Container } from './components/Container';
 
 import imgRes01 from './assets/images/real/20260714_004735_0005.jpg';
@@ -1691,6 +1692,7 @@ export default function App() {
 
       <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
       <BackToTopButton />
+      <WhatsAppButton />
     </div>
   );
 }
